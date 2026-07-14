@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyc
 *.egg-info/
 
 # Virtual environment
@@ -13,9 +14,14 @@ env/
 
 # VS Code
 .vscode/
+Thumbs.db
 
-# macOS
+# OS
 .DS_Store
 
-logs/
-*.log
+# Test & coverage
+.pytest_cache/
+.coverage
+
+# Alembic cache
+**/__pycache__/
