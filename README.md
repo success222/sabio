@@ -1,11 +1,9 @@
 # Sabio
 
-Sabio is an AI-powered market intelligence platform that transforms African technology and startup news into structured, searchable, and actionable intelligence.
+Sabio is an AI-powered platform for collecting, organizing, and exploring African technology and startup news.
 
-## Vision
-
-To become the Bloomberg Terminal for African startups.
+The goal is to help researchers, journalists, investors, and ecosystem builders discover insights from thousands of articles through AI-powered search and analysis.
 
 ## Status
 
-🚧 In active development.
+🚧 Currently under active development.
