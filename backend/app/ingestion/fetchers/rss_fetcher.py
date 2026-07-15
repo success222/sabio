@@ -1,17 +1,15 @@
-from datetime import datetime
 from email.utils import parsedate_to_datetime
 
 import feedparser
 
-RSS_URL = "https://techcabal.com/feed/"
 
-
-def fetch_articles():
-    feed = feedparser.parse(RSS_URL)
+def fetch_articles_from_source(source):
+    feed = feedparser.parse(source.rss_url)
 
     articles = []
 
     for entry in feed.entries:
+
         published = None
 
         if hasattr(entry, "published"):
@@ -24,9 +22,9 @@ def fetch_articles():
             {
                 "title": entry.title,
                 "summary": getattr(entry, "summary", None),
-                "source": "TechCabal",
                 "url": entry.link,
                 "published_at": published,
+                "source_id": source.id,
             }
         )
 

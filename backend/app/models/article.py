@@ -1,4 +1,5 @@
-from sqlalchemy import Column, DateTime, Integer, String, Text
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from app.db.database import Base
@@ -13,13 +14,25 @@ class Article(Base):
 
     summary = Column(Text)
 
-    source = Column(String(255), nullable=False)
+    source_id = Column(
+        Integer,
+        ForeignKey("sources.id"),
+        nullable=False,
+    )
 
-    url = Column(String(1000), unique=True, nullable=False)
+    url = Column(
+        String(1000), 
+        unique=True, 
+        nullable=False)
 
     published_at = Column(DateTime(timezone=True))
 
     created_at = Column(
         DateTime(timezone=True),
         server_default=func.now(),
+    )
+    
+    source = relationship(
+        "Source",
+        back_populates="articles",
     )

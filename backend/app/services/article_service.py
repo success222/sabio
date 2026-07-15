@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.models.article import Article
 
 
-def save_article(db: Session, article_data: dict):
+def create_article_if_not_exists(db: Session, article_data: dict):
     """
     Save an article if it doesn't already exist.
     """

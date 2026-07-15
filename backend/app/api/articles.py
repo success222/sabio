@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.ingestion.rss import fetch_articles
+from backend.app.ingestion.fetchers.rss_fetcher import fetch_articles
 from app.schemas.article import ArticleResponse
 from app.services.article_service import (
     get_all_articles,

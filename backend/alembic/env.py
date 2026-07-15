@@ -7,7 +7,7 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 
 from app.db.database import Base
-from app.models import Article
+from app.models import Article, Source
 
 config = context.config
 
