@@ -25,3 +25,6 @@ Thumbs.db
 
 # Alembic cache
 **/__pycache__/
+
+# log files
+**/logs/*.log
