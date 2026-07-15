@@ -25,12 +25,30 @@ def create_article_if_not_exists(db: Session, article_data: dict):
 
     return article
 
-def get_all_articles(db: Session):
+def get_all_articles(
+    db: Session,
+    skip: int = 0,
+    limit: int = 20,
+    source: str | None = None,
+    search: str | None = None,
+):
     """
-    Retrieve all articles from the database.
+    Retrieve articles with optional source filtering and pagination.
     """
+    query = db.query(Article)
+    
+    if source:
+        query = query.join(Article.source).filter_by(slug=source)
+    
+    if search:
+        query = query.filter(
+            Article.title.ilike(f"%{search}%")
+        )
+    
     return (
-        db.query(Article)
+        query
         .order_by(Article.published_at.desc())
+        .offset(skip)
+        .limit(limit)
         .all()
     )

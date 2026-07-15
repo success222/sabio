@@ -1,38 +1,35 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from backend.app.ingestion.fetchers.rss_fetcher import fetch_articles
+from app.ingestion.pipeline import run_ingestion_pipeline
 from app.schemas.article import ArticleResponse
-from app.services.article_service import (
-    get_all_articles,
-    save_article,
-)
+from app.services.article_service import get_all_articles
 
 router = APIRouter(prefix="/articles", tags=["Articles"])
 
 
 @router.post("/import")
-def import_articles(db: Session = Depends(get_db)):
-    articles = fetch_articles()
-
-    imported = 0
-    duplicates = 0
-
-    for article in articles:
-        result = save_article(db, article)
-
-        if result:
-            imported += 1
-        else:
-            duplicates += 1
+def import_articles():
+    run_ingestion_pipeline()
 
     return {
-        "imported": imported,
-        "duplicates": duplicates,
+        "message": "Ingestion completed successfully."
     }
 
 
 @router.get("", response_model=list[ArticleResponse])
-def list_articles(db: Session = Depends(get_db)):
-    return get_all_articles(db)
+def list_articles(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    source: str | None = Query(None),
+    search: str | None = Query(None),
+    db: Session = Depends(get_db),
+):
+    return get_all_articles(
+        db=db,
+        skip=skip,
+        limit=limit,
+        source=source,
+        search=search,
+    )
