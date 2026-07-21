@@ -1,8 +1,8 @@
-# Sabio
+# Market Intelligence Platform
 
-Sabio is an AI-powered market intelligence platform focused on the African technology ecosystem.
+An AI-powered market intelligence platform focused on the African technology ecosystem.
 
-It collects news from multiple trusted sources, stores it in a structured database, and lays the foundation for AI-powered search, analysis, and ecosystem intelligence.
+It collects news from multiple trusted sources, stores it in a structured database, and serves as the foundation for AI-powered search, analysis, and ecosystem intelligence.
 
 ## Status
 
@@ -22,6 +22,8 @@ It collects news from multiple trusted sources, stores it in a structured databa
 - Keyword search
 - Structured logging
 - Interactive API documentation (Swagger/OpenAPI)
+- Pytest testing infrastructure
+- Dedicated test database for automated testing
 
 ## Tech Stack
 
@@ -33,20 +35,21 @@ It collects news from multiple trusted sources, stores it in a structured databa
 - SQLAlchemy
 - Alembic
 - Pydantic
+- Pytest
 
 ### Data Ingestion
 
 - Feedparser
-
 
 ## Roadmap
 
 - [x] Sprint 0 – Product design and architecture
 - [x] Sprint 1 – Backend foundation
 - [x] Sprint 2 – Multi-source ingestion
-- [x] Sprint 3 – Article search and filtering
-- [ ] Sprint 4 – AI-powered enrichment
-- [ ] Sprint 5 – Semantic search
-- [ ] Sprint 6 – Analytics dashboard
-- [ ] Sprint 7 – Frontend application
-- [ ] Sprint 8 – Production deployment
+- [x] Sprint 3 – Article discovery (search, filtering, and pagination)
+- [ ] Sprint 4 – Automated testing
+- [ ] Sprint 5 – AI-powered enrichment
+- [ ] Sprint 6 – Semantic search
+- [ ] Sprint 7 – Analytics dashboard
+- [ ] Sprint 8 – Frontend application
+- [ ] Sprint 9 – Production deployment
